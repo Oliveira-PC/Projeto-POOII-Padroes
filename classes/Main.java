@@ -8,27 +8,61 @@ public class Main {
   
   
   //APLIQUE SINGLETON, REMOVA ESSA DECLARACAO E USO GetInstance nos métodos que chamam db
-  static DataBase db;
+  //static DataBase db
   static int opcao;
   static Scanner entrada;
   //static Nota nota;
 
   public static void main(String[] args) {
-    //REMOVA 
-    db = new DataBase(); 
+    
+  
     entrada = new Scanner(System.in);
     
-    //FACA UM MENU PARA SELECIONAR A OPCAO (1 - Prof/ 2- Coord) USANDO A SENHA EM PROFESSOR
-    //MENU
-    menuCoordenador();
-
-    //menuProfessor();
+    menuPrincipal();
    
     entrada.close();
   }
 
-public static void menuCoordenador(){
+public static void menuPrincipal(){
   do { 
+    System.out.println("╔═════════════════════════════════════════╗");
+    System.out.println("║                MENU                     ║");
+    System.out.println("╠═════════════════════════════════════════╣");
+    System.out.println("║       1 - Menu Coordenador              ║");
+    System.out.println("║        2 - Menu Professor               ║");
+    System.out.println("╚═════════════════════════════════════════╝");
+    System.out.print("Opção: ");
+    opcao = entrada.nextInt(); 
+
+    switch (opcao) {
+      
+      case 1:
+        menuCoordenador();
+        break;
+      case 2:
+        menuProfessor();
+        break;
+        default:
+          System.out.println("Opção inválida!");
+      }
+    } while (opcao != 0);
+
+}  
+  
+public static void menuCoordenador(){
+    DataBase db = DataBase.getInstance();
+    
+    System.out.println("Insira a Senha de Coordenador");
+    System.out.print("Senha: ");
+    opcao = entrada.nextInt(); 
+    if (opcao == db.getSenhaCoordenador()){
+        System.out.println("Senha Correta, Seja Bem vindo");
+        System.out.println("");
+        System.out.println("");
+        System.out.println("");
+    } else menuCoordenador();
+    
+    do { 
     System.out.println("╔═════════════════════════════════════════╗");
     System.out.println("║                MENU                     ║");
     System.out.println("╠═════════════════════════════════════════╣");
@@ -98,7 +132,19 @@ public static void menuCoordenador(){
 
 
 public static void menuProfessor(){
-  do { 
+    DataBase db = DataBase.getInstance();
+    
+    System.out.println("Insira a Senha de Professor");
+    System.out.print("Senha: ");
+    opcao = entrada.nextInt(); 
+    if (opcao == db.getSenhaProfessor()){
+        System.out.println("Senha Correta, Seja Bem vindo");
+        System.out.println("");
+        System.out.println("");
+        System.out.println("");
+    } else menuProfessor();  
+    
+    do { 
     System.out.println("╔═════════════════════════════════════════╗");
     System.out.println("║                MENU                     ║");
     System.out.println("╠═════════════════════════════════════════╣");
@@ -137,7 +183,7 @@ public static void menuProfessor(){
 
 
 public static void cadastarCoordenador(){
-  
+  DataBase db = DataBase.getInstance();
   System.out.println("Lista de professores:");
     for (int i = 0; i < db.getProfessores().size(); i++) {
         System.out.printf("%d - %s\n", i + 1, db.getProfessores().get(i).getNome());
@@ -168,6 +214,7 @@ public static void cadastarCoordenador(){
 
 
 public static void cadastrarNotas(){
+   DataBase db = DataBase.getInstance();
    System.out.println(" ---- Cadastrar Notas ----");
    
    System.out.println("Selecione a turma");
@@ -220,6 +267,7 @@ public static void cadastrarNotas(){
 
 
 public static void mostrarEstatistica(){
+    DataBase db = DataBase.getInstance();
     System.out.println("Estatisticas");
     for( int i = 0; i < db.getTurmas().size(); i++){
       System.out.println("Dados da turma " + db.getTurmas().get(i).getIdentificacao());
@@ -230,6 +278,7 @@ public static void mostrarEstatistica(){
 
 
 public static void exibirListaRecuperacao(){
+  DataBase db = DataBase.getInstance();
   System.out.println("Lista de recuperação");
           System.out.println("Escolha a turma para listar alunos em recuperação:");
           for (int i = 0; i < db.getTurmas().size(); i++) {
@@ -259,6 +308,7 @@ public static void exibirListaRecuperacao(){
 
 
 public static void exibirListaGeral(){
+  DataBase db = DataBase.getInstance();
   db.getTurmas().get(0).exibirDados();
   System.out.println();
 
@@ -275,6 +325,7 @@ public static void exibirListaGeral(){
 }
 
 public static void exibirHistorico(){
+    DataBase db = DataBase.getInstance();
 
     System.out.println("Histórico de alterações dos alunos:");
     for (Aluno aluno : db.getAlunos()) {
@@ -285,9 +336,8 @@ public static void exibirHistorico(){
 
 
 public static void cadastrarProfessor(){
-  //ADICIONE EM TODOS OS MÉTODOS QUE USAM db
- //DataBase db = DataBase.getInstace();
-
+  DataBase db = DataBase.getInstance();
+  
   System.out.println(" ---- Cadastrar Professor ----");
   Professor professor = new Professor();
   entrada.nextLine();
@@ -305,13 +355,14 @@ public static void cadastrarProfessor(){
 
   System.out.print("Informe o SIAPE: ");
   professor.setSiape(entrada.nextLine());
-
+  
   db.getProfessores().add(professor);
   System.out.println("Professor cadastrado com sucesso!");
 
 }
 
 public static void vincularProfessorTurma(){
+    DataBase db = DataBase.getInstance();
 
   System.out.println(" ---- Vincular Professor a Turma ----");
   System.out.println("Escolha o professor para vincular:");
@@ -364,6 +415,7 @@ public static void cadastrarCurso() {
 }
 
 public static void cadastrarAluno() {
+    DataBase db = DataBase.getInstance();
 
   System.out.println(" ---- Cadastrar Aluno ----");
   Aluno aluno = new Aluno();
@@ -389,6 +441,7 @@ public static void cadastrarAluno() {
 }
 
 public static void vincularEstudanteTurma(){
+    DataBase db = DataBase.getInstance();
 
   System.out.println(" ---- Vincular Estudante a Turma ----");
   System.out.println("Escolha o estudante para vincular:");
@@ -425,6 +478,7 @@ public static void vincularEstudanteTurma(){
 }
 
 public static void cadastrarTurma(){ 
+    DataBase db = DataBase.getInstance();
   System.out.println(" ---- Cadastrar Turma ----");
   Turma turma = new Turma();
 

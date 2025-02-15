@@ -2,16 +2,25 @@ package classes;
 
 import java.util.ArrayList;
 
-//APLIQUE SINGLETON NESTA CLASSE
-
 public class DataBase {
+
+    private static DataBase instance;
+    
+    public static DataBase getInstance() {
+        if(instance == null)
+            instance = new DataBase();
+        
+        return instance;
+    }
     
     private ArrayList<Aluno> alunos;
     private ArrayList<Professor> professores;
     private ArrayList<Curso> cursos;
     private ArrayList<Turma> turmas;
-
-    public DataBase() {
+    private int SenhaProfessor = 147369;
+    private int SenhaCoordenador = 963741;
+    
+    private DataBase() {
         this.alunos = new ArrayList<>();
         this.professores = new ArrayList<>();
         this.cursos = new ArrayList<>();
@@ -43,7 +52,25 @@ public class DataBase {
         for (Aluno aluno : alunos) {
         turmas.get(1).adicionarAluno(new AlunoTurma(aluno));
         }
+        
+
     
+    }
+
+    public int getSenhaProfessor() {
+        return SenhaProfessor;
+    }
+
+    public void setSenhaProfessor(int SenhaProfessor) {
+        this.SenhaProfessor = SenhaProfessor;
+    }
+
+    public int getSenhaCoordenador() {
+        return SenhaCoordenador;
+    }
+
+    public void setSenhaCoordenador(int SenhaCoordenador) {
+        this.SenhaCoordenador = SenhaCoordenador;
     }
 
     public ArrayList<Aluno> getAlunos() {
