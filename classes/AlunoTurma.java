@@ -1,14 +1,18 @@
 package classes;
 
-public class AlunoTurma {
+public class AlunoTurma implements NotaObserver {
     private Aluno aluno;
     private Nota nota;
+    private Semestre semestre;
 
     public AlunoTurma(){}
     
     public AlunoTurma(Aluno aluno){
         this.aluno = aluno;
+        this.semestre = semestre;
         this.nota = new Nota();
+        
+        semestre.addObserver(this);
     }
 
     public AlunoTurma(Aluno aluno, Nota nota){
@@ -30,5 +34,10 @@ public class AlunoTurma {
 
     public void setAluno(Aluno aluno){
         this.aluno = aluno;
+    }
+    
+ @Override
+    public void atualizarStatusNota() {
+        nota.atualizarStatusNota(semestre.isStatus());
     }
 }

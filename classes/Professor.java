@@ -15,8 +15,6 @@ public class Professor extends Pessoa {
   this.senha  =  senha;
   this.siape = siape;
   }
- 
- 
 
   public String getSiape(){
     return siape;

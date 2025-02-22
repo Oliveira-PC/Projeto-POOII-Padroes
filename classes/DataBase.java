@@ -17,6 +17,7 @@ public class DataBase {
     private ArrayList<Professor> professores;
     private ArrayList<Curso> cursos;
     private ArrayList<Turma> turmas;
+    private ArrayList<Semestre> semestre;
     private int SenhaProfessor = 147369;
     private int SenhaCoordenador = 963741;
     
@@ -25,6 +26,7 @@ public class DataBase {
         this.professores = new ArrayList<>();
         this.cursos = new ArrayList<>();
         this.turmas = new ArrayList<>();
+        this.semestre = new ArrayList<>();
 
         //ESSE TRECHO É TESTE. DEVE SER APAGADO NA VERSÃO FINAL
         alunos.add(new Aluno("Mirele Oliveira", "111.111.111-11", "(11) 91111-1111", "Rua A, Bairro A", "1111111", 7.0));
@@ -32,7 +34,9 @@ public class DataBase {
         alunos.add(new Aluno("Carlos Eduardo", "333.333.333-33", "(33) 93333-33333", "Rua C, Bairro C", "3333333", 7.0));
         alunos.add(new Aluno("Michael Jackson", "444.444.444-44", "(44) 94444-4444", "Rua D, Bairro D", "4444444", 7.0));
         alunos.add(new Aluno("Jair Bolsonaro", "555.555.555-55", "(55) 95555-5555", "Rua E, Bairro E", "5555555", 7.0));
-    
+        
+        semestre.add(new Semestre("terceiro", true, alunos));
+        
         professores.add(new Professor("Luís Araújo", "666.666.666-66", "(66) 96666-6666", "Rua F, Bairro F", "244576", "12345"));
         professores.add(new Professor("Beto Carneiro", "777.777.777-77", "(77) 97777-7777", "Rua G, Bairro G", "325078", "12345"));
 
@@ -52,9 +56,6 @@ public class DataBase {
         for (Aluno aluno : alunos) {
         turmas.get(1).adicionarAluno(new AlunoTurma(aluno));
         }
-        
-
-    
     }
 
     public int getSenhaProfessor() {
@@ -103,5 +104,13 @@ public class DataBase {
 
     public void setTurmas(ArrayList<Turma> turmas) {
         this.turmas = turmas;
+    }
+    
+    public ArrayList<Semestre> getSemestre() {
+        return semestre;
+    }
+
+    public void setSemestre(ArrayList<Semestre> semestre) {
+        this.semestre = semestre;
     }
 }

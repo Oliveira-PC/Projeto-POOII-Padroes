@@ -481,12 +481,14 @@ public static void cadastrarTurma(){
     DataBase db = DataBase.getInstance();
   System.out.println(" ---- Cadastrar Turma ----");
   Turma turma = new Turma();
+  Semestre semestre = new Semestre();
 
   System.out.print("Informe identificação: ");
   turma.setIdentificacao(entrada.nextLine());
 
   System.out.print("Informe o semestre: ");
-  turma.setSemestre(entrada.nextLine());
+  semestre.setNome(entrada.nextLine());
+  semestre.setStatus(true);
 
   System.out.print("Escolha o curso para vinculá-lo como coordenador: ");
   for (int i = 0; i < db.getCursos().size(); i++) {

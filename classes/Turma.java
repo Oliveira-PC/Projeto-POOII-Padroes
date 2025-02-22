@@ -7,12 +7,11 @@ public class Turma {
 
   private String identificacao;
   private Curso curso;
-  private String semestre;
+  private ArrayList<Semestre> semestre = new ArrayList<>();
   private ArrayList<Professor> professores = new ArrayList<>();
   private ArrayList<AlunoTurma> alunos = new ArrayList<>();
 
   private List<Log> logs = new ArrayList<>();
-  //Nota nota = new Nota();
 
   public Turma(){
 
@@ -21,7 +20,7 @@ public class Turma {
   public Turma( String indentificacao, Curso curso, String semestre){
     this.identificacao = indentificacao;
     this.curso = curso;
-    this.semestre = semestre;
+    this.semestre = new ArrayList<>();
     this.logs = new ArrayList<>();
   }
 
@@ -41,13 +40,13 @@ public class Turma {
     this. curso = curso;
   }
 
-public String getSemestre(){
-  return semestre;
-}
+public ArrayList<Semestre> getSemestre() {
+    return semestre;
+  }
 
-public void setSemestre( String semestre){
-  this.semestre = semestre;
-}
+  public void setSemestre(ArrayList<Semestre> semestre) {
+    this.semestre = semestre;
+  }
 
   public ArrayList<Professor> getProfessores() {
     return professores;
@@ -75,7 +74,6 @@ public void setSemestre( String semestre){
     alunos.add(aluno);
   }
 
-  
   public void setEstatica(){
     System.out.println("Estáticas das notas dos alunos:");
     int totalAprovados = 0;
@@ -107,8 +105,11 @@ public void setSemestre( String semestre){
 
 
   public void alterarNotaEstudante(Professor coordenador, AlunoTurma alunoTurma, Nota novaNota) {
+    Semestre semestre = new Semestre();
     if (coordenador.getCoordenador()){
-      alunoTurma.setNota(novaNota);   
+        if (semestre.Status == true){
+            alunoTurma.setNota(novaNota); 
+        } else System.out.println("Sem Semestre ativo");
      } else{
        System.out.println("Somente coordenadores podem alterar notas");
      }
@@ -116,7 +117,9 @@ public void setSemestre( String semestre){
 
   
   public void exibirDados(){
+    Semestre semestre = new Semestre();
     System.out.println("Turma: " + identificacao);
+    System.out.println("Semestre: " + semestre.getNome());
     System.out.println("Professores:");
     for (Professor professor : professores){
       professor.exibirDados();
