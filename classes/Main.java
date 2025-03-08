@@ -10,7 +10,7 @@ public class Main {
   static int opcao2;
   static Scanner entrada;
 
-  public static void main(String[] args) {
+public static void main(String[] args) {
     
     entrada = new Scanner(System.in);
     
@@ -21,12 +21,12 @@ public class Main {
 
 public static void menuPrincipal(){
   do { 
-    System.out.println("╔═════════════════════════════════════════╗");
+    System.out.println("╔══════════════════════╗");
     System.out.println("║                MENU                ║");
-    System.out.println("╠═════════════════════════════════════════╣");
+    System.out.println("╠══════════════════════╣");
     System.out.println("║       1 - Menu Coordenador         ║");
     System.out.println("║        2 - Menu Professor          ║");
-    System.out.println("╚═════════════════════════════════════════╝");
+    System.out.println("╚══════════════════════╝");
     System.out.print("Opção: ");
     opcao = entrada.nextInt(); 
 
@@ -59,9 +59,9 @@ public static void menuCoordenador(){
     } else menuCoordenador();
     
     do { 
-    System.out.println("╔═════════════════════════════════════════╗");
+    System.out.println("╔══════════════════════╗");
     System.out.println("║                MENU                ║");
-    System.out.println("╠═════════════════════════════════════════╣");
+    System.out.println("╠══════════════════════╣");
     System.out.println("║     1 - Cadastrar um professor     ║");
     System.out.println("║     2 - Vincular um prof. a turma  ║");
     System.out.println("║     3 - Cadastrar um estudante     ║");
@@ -77,7 +77,7 @@ public static void menuCoordenador(){
     System.out.println("║    13 - Exportar Dados Estudante   ║");
     System.out.println("║    14 - Importar Dados Estudante   ║");
     System.out.println("║             0 - Sair               ║");
-    System.out.println("╚═════════════════════════════════════════╝");
+    System.out.println("╚══════════════════════╝");
     System.out.print("Opção: ");
     opcao1 = entrada.nextInt(); 
 
@@ -149,15 +149,15 @@ public static void menuProfessor(){
     } else menuProfessor();  
     
     do { 
-    System.out.println("╔═════════════════════════════════════════╗");
+    System.out.println("╔═════════════════════════╗");
     System.out.println("║                MENU                     ║");
-    System.out.println("╠═════════════════════════════════════════╣");
+    System.out.println("╠═════════════════════════╣");
     System.out.println("║  1 - Atribuir notas aos estudantes      ║");
     System.out.println("║     2 - Mostrar a estatística           ║");
     System.out.println("║      3 - Lista de recuperação           ║");
     System.out.println("║           4 - Histórico                 ║");
     System.out.println("║             0 - Sair                    ║");
-    System.out.println("╚═════════════════════════════════════════╝");
+    System.out.println("╚═════════════════════════╝");
     System.out.print("Opção: ");
     opcao2 = entrada.nextInt(); 
 
@@ -219,6 +219,9 @@ public static void cadastarCoordenador(){
 
 public static void cadastrarNotas(){
    DataBase db = DataBase.getInstance();
+
+   double media;
+   
    System.out.println(" ---- Cadastrar Notas ----");
    
    System.out.println("Selecione a turma");
@@ -263,7 +266,6 @@ public static void cadastrarNotas(){
     nota.setNota3(entrada.nextDouble());
 
     System.out.printf("Média: %.2f\n", nota.calcularMedia());
-    System.out.print("Situação: ");
     db.getTurmas().get(escolhaTurma).getAlunosTurma().get(escolhaEstudante).setNota(nota);
     nota.verificarSituacao();
 

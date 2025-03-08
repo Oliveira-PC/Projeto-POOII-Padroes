@@ -4,8 +4,12 @@ public class AlunoTurma implements NotaObserver {
     private Aluno aluno;
     private Nota nota;
     private Semestre semestre;
+    private Estado estadoAtual;
 
-    public AlunoTurma(){}
+    public AlunoTurma(){
+    
+        this.estadoAtual = new Ativo();  
+    }
     
     public AlunoTurma(Aluno aluno, Semestre semestre){
         this.aluno = aluno;
@@ -14,7 +18,7 @@ public class AlunoTurma implements NotaObserver {
         
         semestre.addObserver(this);
     }
-
+    
     public AlunoTurma(Aluno aluno, Nota nota){
         this.aluno = aluno;
         this.nota =nota;
@@ -35,7 +39,7 @@ public class AlunoTurma implements NotaObserver {
     public void setAluno(Aluno aluno){
         this.aluno = aluno;
     }
-    
+ 
  @Override
     public void atualizarStatusNota() {
         nota.atualizarStatusNota(semestre.isStatus());

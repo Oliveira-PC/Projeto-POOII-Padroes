@@ -6,6 +6,7 @@ public class Nota implements NotaObserver {
 private Double nota1;
 private Double nota2;
 private Double nota3;
+private Double media;
 private Double notaRecuperacao;
 private boolean Status;
 private ArrayList<Aluno> alunos = new ArrayList<>();
@@ -60,21 +61,32 @@ public void setStatus(boolean Status) {
     this.Status = Status;
 }
 
+public Double getMedia() {
+    return media;
+}
+
+public void setMedia(Double media) {
+    this.media = media;
+}
+
 public double calcularMedia() {
+    
   return (this.nota1 + this.nota2 + this.nota3)/ 3;
 }
   
 
 public boolean verificarSituacao() {
+  AlunoTurma alunoturma = new AlunoTurma();
+  Ativo ativo = new Ativo();
   boolean aprovado = false;
   double media = this.calcularMedia();
 
   if (media < 2.5) {
-    System.out.println("Reprovado");
+
   } else if (media < 7) {
-    System.out.println("Em recuperação");
+
   } else {
-    System.out.println("Aprovado");
+
     aprovado = true;
   }
 
@@ -102,7 +114,7 @@ public String toString(){
 
     @Override
     public void atualizarStatusNota() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
 }
