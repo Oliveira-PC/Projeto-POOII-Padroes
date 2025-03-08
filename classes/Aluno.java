@@ -6,7 +6,7 @@ private String matricula;
  
   public Aluno() {}
 
-  public Aluno(String nome, String cpf, String telefone, String endereco, String matricula, Double     notaRecuperacao) {
+  public Aluno(String nome, String cpf, String telefone, String endereco, String matricula, Double notaRecuperacao) {
    super(nome, cpf, telefone, endereco);
    this.matricula = matricula;
   
@@ -29,6 +29,6 @@ private String matricula;
   }
 
   public void exibirHistorico() {
-    System.out.println("Histórico do aluno " + this.getNome() + ":");
+    System.out.println("Histórico do aluno " + this.getNome() + this.matricula + ":");
   }
 }

@@ -7,7 +7,7 @@ public class AlunoTurma implements NotaObserver {
 
     public AlunoTurma(){}
     
-    public AlunoTurma(Aluno aluno){
+    public AlunoTurma(Aluno aluno, Semestre semestre){
         this.aluno = aluno;
         this.semestre = semestre;
         this.nota = new Nota();
